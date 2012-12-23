@@ -27,7 +27,7 @@ WITH RECURSIVE numbers(n) AS (
     SELECT n+1 FROM numbers WHERE n < 1000
 
 ), contig_identifier AS (
-   -- change this for your feature_id (contig_id) and the cvterm of your database (e.g., 'contig')
+   -- change this for with feature_id (contig_id) and the cvterm of your database (e.g., 'contig')
    -- valid contig_ids are (1029, 34, ...)
    SELECT 1029 as id, cast('contig' as text) as cvterm
    
@@ -50,7 +50,7 @@ WITH RECURSIVE numbers(n) AS (
    
 ), contig_detail AS (
    SELECT substring(contig_sequence from cast((ROW_NUMBER() OVER (ORDER BY contig_id ASC) - 1) * 50 + 1 as integer) for 50) as line
-   FROM contig, numbers -- use numbers temporal table to multiplicate the same row n times
+   FROM contig, numbers -- use numbers temporal table to multiply the same row n times
    WHERE numbers.n <= LENGTH(cast(contig_sequence as text)) / 50 + 1 -- int division, up to n pieces of 50 nucleotides
 
 ), contig_section AS (
