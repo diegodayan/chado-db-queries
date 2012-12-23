@@ -27,7 +27,7 @@ WITH RECURSIVE numbers(n) AS (
     SELECT n+1 FROM numbers WHERE n < 1000
 
 ), contig_identifier AS (
-   -- change this for with feature_id (contig_id) and the cvterm of your database (e.g., 'contig')
+   -- change this with your feature_id (contig_id) and the cvterm of your database (e.g., 'contig')
    -- valid contig_ids are (1029, 34, ...)
    SELECT 1029 as id, cast('contig' as text) as cvterm
    
